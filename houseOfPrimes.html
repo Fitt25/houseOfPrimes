@@ -1,0 +1,41 @@
+<input class = "input" type="number">
+<button class="start">Start</button>
+<div class="result"></div>
+
+
+<script>
+    const isPrime = (num, i = 2) => {
+        if (num == i){
+            return true
+        }
+        if (num < 2){
+            return false
+        }
+        if (num%i==0){
+            return false
+        }
+        return isPrime(num,i+1)
+    }
+    const getPrimes = (num, index = 2, primes = "") =>{
+        if (index >= num){
+            return primes 
+        }
+        if (isPrime(index)){
+            primes += `<h1>${index}</h1>` 
+        }
+        return getPrimes(num, index + 1, primes)
+    }
+
+    const input = document.querySelector(".input")
+    const h1 = document.querySelector(".result")
+    const button = document.querySelector(".start")
+
+    button.onclick = () => {
+        console.log(input.value)
+        if (input.value <= 2){
+            alert("Please insert a valid number higher than 2")
+        }
+        num = input.value
+        h1.innerHTML = getPrimes(num)
+    }
+</script>
